@@ -36,3 +36,7 @@
     background: radial-gradient(circle at center, var(--color-royal-violet) 0%, var(--color-deep-night) 70%);
   }
 }
+
+* {
+  cursor: none !important;
+}

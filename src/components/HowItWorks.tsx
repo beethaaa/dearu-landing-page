@@ -16,7 +16,7 @@ const steps = [
   {
     id: 3,
     title: "3. SIGNAL & INTERACT",
-    desc: "Send a whistle of interest & start chatting when the magic resonates.",
+    desc: "Send a whisper of interest & start chatting when the magic resonates.",
     img: "/assets/letter_open.webp",
   }
 ];

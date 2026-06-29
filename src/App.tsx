@@ -1,4 +1,5 @@
 import { ReactLenis } from "lenis/react";
+import CustomCursor from "./components/CustomCursor.tsx";
 import Navbar from "./components/Navbar.tsx";
 import Hero from "./components/Hero.tsx";
 import FeatureSpotlight from "./components/FeatureSpotlight.tsx";
@@ -9,6 +10,7 @@ function App() {
   return (
     <ReactLenis root>
       <div className="relative min-h-screen bg-deep-night text-pearl-pink overflow-hidden selection:bg-magic-glow selection:text-white">
+        <CustomCursor />
         {/* New Full Height Background with Parallax effect */}
         <div className="absolute top-0 left-0 w-full h-[120%] z-0 pointer-events-none">
           <img

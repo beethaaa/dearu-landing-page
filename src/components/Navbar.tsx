@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Heart, Moon } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Our Story', href: '#our-story' },
     { name: 'The Magic', href: '#the-magic' },
-    { name: 'Send A Whistle', href: '#send-a-whistle' },
+    { name: 'Send A Whisper', href: '#send-a-whisper' },
   ];
 
   return (
@@ -48,86 +48,83 @@ const Navbar = () => {
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-magic-glow/30 to-transparent opacity-0 group-hover/nav:opacity-100 transition-opacity duration-700 blur-md pointer-events-none"></div>
 
           {/* Dynamic Box */}
-          <div className="flex items-center space-x-20 px-16 py-4 bg-white/5 border border-white/10 rounded-full backdrop-blur-xl shadow-[0_0_30px_rgba(255,0,127,0.05)] group-hover/nav:border-magic-glow/50 group-hover/nav:bg-white/10 transition-all duration-500 relative z-10">
+          <div className="flex items-center space-x-6 md:space-x-10 px-10 py-2 md:px-16 md:py-4 bg-white/5 border border-white/10 rounded-full backdrop-blur-xl shadow-[0_0_30px_rgba(255,0,127,0.05)] group-hover/nav:border-magic-glow/50 group-hover/nav:bg-white/10 transition-all duration-500 relative z-10">
             {navLinks.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-xl md:text-2xl font-cinzel font-bold text-pearl-pink/90 hover:text-white relative transition-all duration-500 hover:scale-110 z-20 group/item flex flex-col items-center"
+                className="text-xl md:text-2xl font-cinzel font-bold text-pearl-pink/90 hover:text-white relative transition-all duration-500 hover:scale-110 z-20 group/item flex flex-col items-center py-2 px-4 md:py-3 md:px-6"
               >
-                {/* Rose Scent Wave (Sóng hương hoa hồng) */}
-                <div className="absolute -inset-x-8 -inset-y-6 overflow-hidden pointer-events-none opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                  {/* Trail 1 */}
-                  <motion.div 
-                    className="absolute top-1/2 w-[80%] h-[8px] bg-gradient-to-r from-transparent via-soft-pink/30 to-transparent blur-[4px] rounded-full"
-                    animate={{ 
-                      left: ["-100%", "150%"],
-                      y: [0, -10, 8, -6, 0]
-                    }}
-                    transition={{ 
-                      left: { duration: 2, repeat: Infinity, ease: "linear" },
-                      y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                  />
-                  {/* Trail 2 */}
-                  <motion.div 
-                    className="absolute top-1/2 w-full h-[4px] bg-gradient-to-r from-transparent via-pearl-pink/40 to-transparent blur-[2px] rounded-full"
-                    animate={{ 
-                      left: ["-100%", "150%"],
-                      y: [0, 8, -10, 6, 0]
-                    }}
-                    transition={{ 
-                      left: { duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.2 },
-                      y: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }
-                    }}
-                  />
-                </div>
-
+                {/* Top Corner Hearts on Hover */}
+                <motion.div 
+                  className="absolute -top-3 -left-5 pointer-events-none opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 z-10"
+                  animate={{ y: [0, -3, 0], rotate: [-15, 5, -15] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Heart size={18} fill="currentColor" className="text-[#ff007f] drop-shadow-[0_0_10px_rgba(255,0,127,0.8)]" />
+                </motion.div>
+                <motion.div 
+                  className="absolute -top-1 -right-5 pointer-events-none opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 z-10"
+                  animate={{ y: [0, -4, 0], rotate: [15, -5, 15] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                >
+                  <Heart size={12} fill="currentColor" className="text-[#ffe6f2] drop-shadow-[0_0_8px_rgba(255,230,242,0.8)]" />
+                </motion.div>
                 {/* Fairy Dust Rain that falls down from the element */}
                 <div className="absolute top-full left-[-20%] w-[140%] h-[120px] pointer-events-none opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                  {/* 1. Circle Dot */}
-                  <motion.div className="absolute top-0 left-[10%] w-[3px] h-[3px] bg-[#ff007f] rounded-full shadow-[0_0_8px_#ff007f]" animate={{ y: [0, 80], x: [0, 15, -10], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0.1 }} />
+                  {/* Heart 1 */}
+                  <motion.div className="absolute top-0 left-[10%] text-[#ff007f] drop-shadow-[0_0_8px_#ff007f]" animate={{ y: [0, 80], x: [0, 15, -10], rotate: [-15, 15, -15], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0.1 }}>
+                    <Heart size={8} fill="currentColor" />
+                  </motion.div>
                   
-                  {/* 2. Diamond */}
-                  <motion.div className="absolute top-0 left-[25%] w-[4px] h-[4px] bg-[#00ffff] rotate-45 shadow-[0_0_10px_#00ffff]" animate={{ y: [0, 100], x: [0, -20, 10], rotate: [45, 135, 225], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.3 }} />
+                  {/* Heart 2 */}
+                  <motion.div className="absolute top-0 left-[25%] text-[#ffe6f2] drop-shadow-[0_0_10px_#ffe6f2]" animate={{ y: [0, 100], x: [0, -20, 10], rotate: [10, -20, 10], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.3 }}>
+                    <Heart size={12} fill="currentColor" />
+                  </motion.div>
                   
-                  {/* 3. Tiny Heart */}
+                  {/* Heart 3 */}
                   <motion.div className="absolute top-0 left-[40%] text-[#ff88cc] drop-shadow-[0_0_8px_#ff88cc]" animate={{ y: [0, 90], x: [0, 10, -20], rotate: [-10, 10, -10], opacity: [0, 1, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: "linear", delay: 0.8 }}>
                     <Heart size={10} fill="currentColor" />
                   </motion.div>
 
-                  {/* 4. Star */}
-                  <motion.div className="absolute top-0 left-[55%] text-[#ffd700] drop-shadow-[0_0_10px_#ffd700]" animate={{ y: [0, 110], x: [0, -15, 15], rotate: [0, 180, 360], opacity: [0, 1, 0] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 0.2 }}>
-                    <Star size={12} fill="currentColor" />
+                  {/* Heart 4 */}
+                  <motion.div className="absolute top-0 left-[55%] text-[#ffb3d9] drop-shadow-[0_0_10px_#ffb3d9]" animate={{ y: [0, 110], x: [0, -15, 15], rotate: [20, -10, 20], opacity: [0, 1, 0] }} transition={{ duration: 2.8, repeat: Infinity, ease: "linear", delay: 0.2 }}>
+                    <Heart size={14} fill="currentColor" />
                   </motion.div>
 
-                  {/* 5. Glowing Dash */}
-                  <motion.div className="absolute top-0 left-[70%] w-[6px] h-[1.5px] bg-[#ffffff] rounded-full shadow-[0_0_8px_#fff]" animate={{ y: [0, 75], x: [0, 20, -5], rotate: [-20, 20, -20], opacity: [0, 1, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "linear", delay: 0.5 }} />
-
-                  {/* 6. Sparkle */}
-                  <motion.div className="absolute top-0 left-[85%] text-[#9933ff] drop-shadow-[0_0_12px_#9933ff]" animate={{ y: [0, 95], x: [0, -10, 10], rotate: [0, 90, 180], opacity: [0, 1, 0] }} transition={{ duration: 2.4, repeat: Infinity, ease: "linear", delay: 0.6 }}>
-                    <Sparkles size={14} />
-                  </motion.div>
-
-                  {/* 7. Moon */}
-                  <motion.div className="absolute top-0 left-[5%] text-[#00ffff] drop-shadow-[0_0_10px_#00ffff]" animate={{ y: [0, 85], x: [0, 15, 0], rotate: [-20, 0, -20], opacity: [0, 1, 0] }} transition={{ duration: 2.1, repeat: Infinity, ease: "linear", delay: 0.4 }}>
-                    <Moon size={10} fill="currentColor" />
-                  </motion.div>
-
-                  {/* 8. Extra Diamond */}
-                  <motion.div className="absolute top-0 left-[90%] w-[3px] h-[3px] bg-[#ff007f] rotate-45 shadow-[0_0_10px_#ff007f]" animate={{ y: [0, 105], x: [0, -25, 5], rotate: [45, -45, 45], opacity: [0, 1, 0] }} transition={{ duration: 2.6, repeat: Infinity, ease: "linear", delay: 0.9 }} />
-
-                  {/* 9. Extra Heart */}
-                  <motion.div className="absolute top-0 left-[30%] text-[#ff3333] drop-shadow-[0_0_10px_#ff3333]" animate={{ y: [0, 80], x: [0, -15, -30], rotate: [10, -10, 10], opacity: [0, 1, 0] }} transition={{ duration: 1.9, repeat: Infinity, ease: "linear", delay: 0.1 }}>
+                  {/* Heart 5 */}
+                  <motion.div className="absolute top-0 left-[70%] text-[#ffe6f2] drop-shadow-[0_0_8px_#ffe6f2]" animate={{ y: [0, 75], x: [0, 20, -5], rotate: [-20, 20, -20], opacity: [0, 1, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "linear", delay: 0.5 }}>
                     <Heart size={8} fill="currentColor" />
                   </motion.div>
 
-                  {/* 10. Circle Dot */}
-                  <motion.div className="absolute top-0 left-[80%] w-[5px] h-[5px] bg-[#ffd700] rounded-full shadow-[0_0_15px_#ffd700]" animate={{ y: [0, 120], x: [0, 5, -20], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 0.7 }} />
+                  {/* Heart 6 */}
+                  <motion.div className="absolute top-0 left-[85%] text-[#ff007f] drop-shadow-[0_0_12px_#ff007f]" animate={{ y: [0, 95], x: [0, -10, 10], rotate: [0, 30, 0], opacity: [0, 1, 0] }} transition={{ duration: 2.4, repeat: Infinity, ease: "linear", delay: 0.6 }}>
+                    <Heart size={10} fill="currentColor" />
+                  </motion.div>
+
+                  {/* Heart 7 */}
+                  <motion.div className="absolute top-0 left-[5%] text-[#ff88cc] drop-shadow-[0_0_10px_#ff88cc]" animate={{ y: [0, 85], x: [0, 15, 0], rotate: [-20, 0, -20], opacity: [0, 1, 0] }} transition={{ duration: 2.1, repeat: Infinity, ease: "linear", delay: 0.4 }}>
+                    <Heart size={12} fill="currentColor" />
+                  </motion.div>
+
+                  {/* Heart 8 */}
+                  <motion.div className="absolute top-0 left-[90%] text-[#ffb3d9] drop-shadow-[0_0_10px_#ffb3d9]" animate={{ y: [0, 105], x: [0, -25, 5], rotate: [15, -15, 15], opacity: [0, 1, 0] }} transition={{ duration: 2.6, repeat: Infinity, ease: "linear", delay: 0.9 }}>
+                    <Heart size={8} fill="currentColor" />
+                  </motion.div>
+
+                  {/* Heart 9 */}
+                  <motion.div className="absolute top-0 left-[30%] text-[#ffe6f2] drop-shadow-[0_0_10px_#ffe6f2]" animate={{ y: [0, 80], x: [0, -15, -30], rotate: [10, -10, 10], opacity: [0, 1, 0] }} transition={{ duration: 1.9, repeat: Infinity, ease: "linear", delay: 0.1 }}>
+                    <Heart size={10} fill="currentColor" />
+                  </motion.div>
+
+                  {/* Heart 10 */}
+                  <motion.div className="absolute top-0 left-[80%] text-[#ff88cc] drop-shadow-[0_0_15px_#ff88cc]" animate={{ y: [0, 120], x: [0, 5, -20], rotate: [-5, 15, -5], opacity: [0, 1, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 0.7 }}>
+                    <Heart size={14} fill="currentColor" />
+                  </motion.div>
                   
-                  {/* 11. Sparkle */}
-                  <motion.div className="absolute top-0 left-[15%] text-[#ffffff] drop-shadow-[0_0_10px_#fff]" animate={{ y: [0, 95], x: [0, 25, -15], rotate: [0, 180, 0], opacity: [0, 1, 0] }} transition={{ duration: 2.3, repeat: Infinity, ease: "linear", delay: 0.3 }}>
-                    <Sparkles size={12} />
+                  {/* Heart 11 */}
+                  <motion.div className="absolute top-0 left-[15%] text-[#ff007f] drop-shadow-[0_0_10px_#ff007f]" animate={{ y: [0, 95], x: [0, 25, -15], rotate: [0, -20, 0], opacity: [0, 1, 0] }} transition={{ duration: 2.3, repeat: Infinity, ease: "linear", delay: 0.3 }}>
+                    <Heart size={12} fill="currentColor" />
                   </motion.div>
                 </div>
                 
