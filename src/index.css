@@ -16,6 +16,7 @@
 
 @layer base {
   body {
+    zoom: 75%; /* Simulates 75% browser zoom */
     margin: 0;
     padding: 0;
     background-color: var(--color-deep-night);

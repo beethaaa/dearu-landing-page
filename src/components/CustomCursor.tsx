@@ -6,7 +6,8 @@ const CustomCursor = () => {
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        // Divide by 0.75 to counteract the body { zoom: 75% }
+        cursorRef.current.style.transform = `translate3d(${e.clientX / 0.75}px, ${e.clientY / 0.75}px, 0)`;
       }
     };
 
@@ -23,7 +24,7 @@ const CustomCursor = () => {
       <img 
         src="/assets/featherPen.png" 
         alt="cursor" 
-        className="w-10 md:w-14 h-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] brightness-110 origin-center -translate-x-1/2 -translate-y-1/2" 
+        className="w-10 md:w-14 h-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] brightness-110 -translate-y-full" 
       />
     </div>
   );

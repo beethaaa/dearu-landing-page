@@ -70,7 +70,7 @@ const FeatureSpotlight = () => {
   const roseOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={ref} id="features" className="relative w-full py-40 flex justify-center items-center overflow-hidden min-h-[120vh]">
+    <section ref={ref} id="features" className="relative w-full py-40 flex justify-center items-center overflow-visible min-h-[120vh]">
       
       {/* Background Energy Beams connecting center to features */}
       {features.map((f) => (
