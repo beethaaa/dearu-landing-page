@@ -36,6 +36,30 @@
   .radial-bg {
     background: radial-gradient(circle at center, var(--color-royal-violet) 0%, var(--color-deep-night) 70%);
   }
+
+  .magical-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 136, 204, 0.64) rgba(255, 255, 255, 0.05);
+  }
+
+  .magical-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .magical-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+  }
+
+  .magical-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 230, 242, 0.72), rgba(255, 136, 204, 0.66), rgba(255, 0, 127, 0.52));
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(255, 136, 204, 0.42);
+  }
+
+  .magical-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 136, 204, 0.78), rgba(255, 0, 127, 0.66));
+  }
 }
 
 * {

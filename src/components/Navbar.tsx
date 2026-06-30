@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -19,6 +20,27 @@ const Navbar = () => {
     { name: "The Magic", href: "#the-magic" },
     { name: "Send A Whisper", href: "#send-a-whisper" },
   ];
+
+  const handleAnchorClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    event.preventDefault();
+    setMenuOpen(false);
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+
+    const headerOffset = 112;
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.history.pushState(null, "", href);
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: "smooth",
+    });
+  };
 
   return (
     <motion.nav
@@ -63,6 +85,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(event) => handleAnchorClick(event, item.href)}
                 className="group/item relative px-5 py-3 text-center font-cinzel text-sm font-bold uppercase tracking-[0.16em] text-pearl-pink/78 transition-all duration-300 hover:text-white xl:px-7 xl:text-base"
               >
                 <span className="relative z-10 transition-all duration-300 group-hover/item:drop-shadow-[0_0_14px_rgba(255,136,204,0.95)]">
@@ -120,7 +143,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(event) => handleAnchorClick(event, item.href)}
                   className="block rounded-2xl px-5 py-4 font-cinzel text-sm font-bold uppercase tracking-[0.14em] text-pearl-pink/82 transition-all duration-300 hover:bg-white/8 hover:text-white"
                 >
                   {item.name}

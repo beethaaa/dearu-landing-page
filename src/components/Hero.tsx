@@ -14,7 +14,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl mx-auto mt-10">
         {/* Radar and Logo Section */}
-        <div className="relative my-16 w-full flex flex-col items-center h-screen">
+        <div className="relative my-16 w-full flex flex-col items-center min-h-screen justify-center">
           {/* Title Image & Radar Container */}
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -23,7 +23,7 @@ const Hero = () => {
             className="relative z-10 flex flex-col items-center pt-24 w-full max-w-[800px]"
           >
             {/* Radar Centered on the Logo's Heart */}
-            <div className="absolute top-[60%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] pointer-events-none flex items-center justify-center opacity-80 -translate-y-1/2 z-0">
+            <div className="absolute top-[55%] left-1/2 -translate-x-1/2 w-[700px] h-[700px] pointer-events-none flex items-center justify-center opacity-80 -translate-y-1/2 z-0">
               {/* Dashed Rings */}
               <div className="absolute w-[600px] h-[600px] rounded-full border border-dashed border-soft-pink/20"></div>
               <div className="absolute w-[450px] h-[450px] rounded-full border border-dashed border-soft-pink/30"></div>
@@ -46,26 +46,10 @@ const Hero = () => {
                 {/* Ultra Bright Radar Hand */}
                 <div className="absolute top-0 left-1/2 w-[2px] h-1/2 bg-linear-to-t from-transparent via-magic-glow to-white shadow-[0_0_20px_rgba(255,0,127,1),0_0_40px_rgba(255,0,127,0.8),0_0_8px_#fff] -translate-x-1/2 origin-bottom rounded-t-full z-10"></div>
               </motion.div>
-
-              {/* Floating Music Notes */}
-              <motion.div
-                animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-[40%] right-[30%] text-magic-glow text-lg z-20"
-              >
-                🎵
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, -15, 0], opacity: [0.3, 0.8, 0.3] }}
-                transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                className="absolute top-[20%] left-[35%] text-magic-glow text-sm z-20"
-              >
-                🎶
-              </motion.div>
             </div>
 
             {/* Center glow behind the logo's heart for extra pop */}
-            <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-48 h-48 bg-magic-glow rounded-full blur-[60px] opacity-40 z-0"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-48 h-48 bg-magic-glow rounded-full blur-[60px] opacity-40 z-0"></div>
 
             <img
               src="/assets/title.webp"
@@ -81,14 +65,14 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 1 }}
           src="/assets/line.webp"
           alt="Divider"
-          className="w-[70%] max-w-[400px] mx-auto mt-6 opacity-90 drop-shadow-[0_0_15px_rgba(255,0,127,0.6)] relative z-10"
+          className="w-[70%] max-w-[400px] mx-auto mt-60 opacity-90 drop-shadow-[0_0_15px_rgba(255,0,127,0.6)] relative z-10"
         />
 
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-12 space-y-8 relative"
+          className="mt-6 space-y-8 relative"
         >
           {/* Subtle ambient glow behind text */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-full bg-magic-glow/10 blur-[100px] pointer-events-none rounded-full"></div>
@@ -187,7 +171,7 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 1 }}
           src="/assets/line.webp"
           alt="Divider"
-          className="w-[70%] max-w-[400px] mx-auto mt-20 opacity-90 drop-shadow-[0_0_15px_rgba(255,0,127,0.6)] relative z-10 scale-y-100"
+          className="w-[70%] max-w-[400px] mx-auto mt-16 opacity-90 drop-shadow-[0_0_15px_rgba(255,0,127,0.6)] relative z-10 scale-y-100"
         />
       </div>
     </section>

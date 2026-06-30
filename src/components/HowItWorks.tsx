@@ -24,8 +24,6 @@ const steps = [
 const HowItWorks = () => {
   return (
     <section id="the-magic" className="relative w-full overflow-hidden px-4 py-28 sm:px-6 md:py-36 lg:px-8">
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/40 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-magic-glow/35 to-transparent" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,0,20,0),rgba(36,0,54,0.18)_45%,rgba(9,0,20,0))] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -41,13 +39,12 @@ const HowItWorks = () => {
             <p className="text-xs font-semibold uppercase tracking-[0.34em] text-soft-pink/82 md:text-sm">The Magic</p>
             <img src="/assets/line.webp" alt="" className="h-auto w-24 opacity-75 drop-shadow-[0_0_12px_rgba(255,0,127,0.45)] md:w-40" />
           </div>
-          <h3 className="font-cinzel text-3xl font-bold uppercase leading-tight tracking-[0.13em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.32)] md:text-5xl">
+          <h3 className="font-cinzel text-3xl font-bold lowercase leading-tight tracking-[0.13em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.32)] md:text-5xl">
             Three little rituals before fate answers.
           </h3>
         </motion.div>
 
         <div className="relative overflow-hidden rounded-[36px] border border-white/12 bg-[#10031a]/62 px-5 py-8 shadow-[0_32px_110px_rgba(0,0,0,0.46)] backdrop-blur-2xl md:px-8 md:py-10 lg:px-10">
-          <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-white/55 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,136,204,0.18),transparent_45%),linear-gradient(135deg,rgba(255,255,255,0.05),transparent_34%,rgba(255,0,127,0.06))]" />
 
           <div className="relative z-10 grid gap-5 lg:grid-cols-3">
@@ -62,7 +59,6 @@ const HowItWorks = () => {
                   transition={{ duration: 0.7, delay: index * 0.14, ease: "easeOut" }}
                   className="group relative min-h-[430px] overflow-hidden rounded-[28px] border border-white/10 bg-deep-night/42 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-soft-pink/42 hover:bg-white/[0.07] hover:shadow-[0_26px_80px_rgba(255,0,127,0.18)]"
                 >
-                  <div className="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="absolute -right-24 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(255,136,204,0.18),transparent_68%)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative z-10 flex h-full flex-col">
@@ -97,9 +93,6 @@ const HowItWorks = () => {
                     </div>
                   </div>
 
-                  {index < steps.length - 1 && (
-                    <div className="pointer-events-none absolute right-[-26px] top-1/2 z-20 hidden h-px w-14 bg-linear-to-r from-soft-pink/20 via-soft-pink to-transparent shadow-[0_0_14px_rgba(255,136,204,0.8)] lg:block" />
-                  )}
                 </motion.article>
               );
             })}

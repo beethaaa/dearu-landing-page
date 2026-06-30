@@ -127,18 +127,34 @@ const CommentSection = () => {
 
   return (
     <section className="relative w-full overflow-hidden px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/35 to-transparent" />
       <div className="absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-magic-glow/10 blur-[150px] pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-120px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 mx-auto grid max-w-7xl gap-6 overflow-hidden rounded-[36px] border border-white/12 bg-[#10031a]/66 p-5 shadow-[0_32px_110px_rgba(0,0,0,0.46)] backdrop-blur-2xl md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
-      >
-        <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-white/55 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_10%,rgba(255,136,204,0.18),transparent_36%),radial-gradient(ellipse_at_80%_85%,rgba(255,0,127,0.12),transparent_34%)]" />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto mb-16 max-w-4xl text-center md:mb-20"
+        >
+          <div className="mb-6 flex items-center justify-center gap-4 md:gap-7">
+            <img src="/assets/line.webp" alt="" className="h-auto w-24 rotate-180 opacity-75 drop-shadow-[0_0_12px_rgba(255,0,127,0.45)] md:w-40" />
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-soft-pink/82 md:text-sm">The Whispers</p>
+            <img src="/assets/line.webp" alt="" className="h-auto w-24 opacity-75 drop-shadow-[0_0_12px_rgba(255,0,127,0.45)] md:w-40" />
+          </div>
+          <h3 className="font-cinzel text-3xl font-bold lowercase leading-tight tracking-[0.13em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.32)] md:text-5xl">
+            A Garden of Whispers
+          </h3>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative grid gap-6 overflow-hidden rounded-[36px] border border-white/12 bg-[#10031a]/66 p-5 shadow-[0_32px_110px_rgba(0,0,0,0.46)] backdrop-blur-2xl md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_10%,rgba(255,136,204,0.18),transparent_36%),radial-gradient(ellipse_at_80%_85%,rgba(255,0,127,0.12),transparent_34%)]" />
 
         <div className="relative z-10 flex min-h-[420px] flex-col justify-between overflow-hidden rounded-[30px] border border-white/10 bg-deep-night/44 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] md:p-8">
           <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-soft-pink/12 blur-3xl" />
@@ -169,7 +185,7 @@ const CommentSection = () => {
                 placeholder="Write your whisper..."
                 className="min-h-32 w-full resize-none rounded-2xl bg-transparent px-4 py-3 font-serif text-xl italic leading-8 text-white outline-none placeholder:text-pearl-pink/38"
               />
-              <div className="flex items-center justify-between gap-4 border-t border-white/8 px-4 pt-3">
+              <div className="flex items-center justify-between gap-4 px-4 pt-3">
                 <span className="text-xs uppercase tracking-[0.22em] text-pearl-pink/42">
                   {remaining} left
                 </span>
@@ -204,7 +220,11 @@ const CommentSection = () => {
             </button>
           </div>
 
-          <div className="max-h-[520px] space-y-4 overflow-y-auto pr-1">
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-pearl-pink/52">
+            {comments.length.toLocaleString("en-US")} comments
+          </p>
+
+          <div className="magical-scrollbar max-h-[520px] space-y-4 overflow-y-auto pr-2">
             {isLoading ? (
               <div className="flex min-h-56 items-center justify-center rounded-[24px] border border-white/10 bg-deep-night/38 text-pearl-pink/62">
                 <Loader2 className="mr-3 h-5 w-5 animate-spin" />
@@ -248,7 +268,8 @@ const CommentSection = () => {
             </p>
           )}
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

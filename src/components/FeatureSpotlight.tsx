@@ -63,11 +63,7 @@ const FeatureRibbon = ({
       transition={{ duration: 0.65, delay: index * 0.12, ease: "easeOut" }}
       className={`group relative rounded-[26px] border border-white/10 bg-[#14051f]/58 p-5 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 hover:border-soft-pink/36 hover:bg-white/7.5 hover:shadow-[0_24px_80px_rgba(255,0,127,0.17)] lg:absolute lg:w-[360px] ${feature.desktopClass}`}
     >
-      <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-white/42 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="absolute -top-14 h-32 w-32 rounded-full bg-soft-pink/12 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 lg:group-hover:opacity-80" />
-      <div
-        className={`pointer-events-none absolute hidden h-px bg-linear-to-r from-soft-pink/45 via-soft-pink/75 to-transparent shadow-[0_0_14px_rgba(255,136,204,0.7)] lg:block ${feature.lineClass}`}
-      />
 
       <div
         className={`relative px-4 z-10 flex items-start gap-4 ${rowDirection}`}
@@ -79,7 +75,6 @@ const FeatureRibbon = ({
             <span className="font-cinzel text-sm font-bold text-soft-pink/76">
               {feature.id}
             </span>
-            <span className="h-px w-10 bg-soft-pink/26" />
           </div>
           <h4 className="font-cinzel text-xl font-bold leading-snug tracking-widest text-white transition-colors duration-300 group-hover:text-pearl-pink">
             {feature.title}
@@ -99,9 +94,7 @@ const FeatureSpotlight = () => {
       id="features"
       className="relative w-full overflow-hidden px-4 py-28 sm:px-6 md:py-36 lg:px-8"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/35 to-transparent" />
       <div className="absolute left-1/2 top-1/2 h-[860px] w-[860px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-magic-glow/10 blur-[170px] pointer-events-none" />
-      <div className="absolute left-1/2 top-[58%] h-px w-[76vw] -translate-x-1/2 bg-linear-to-r from-transparent via-soft-pink/18 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
@@ -137,18 +130,7 @@ const FeatureSpotlight = () => {
 
         <div className="relative mt-14 lg:min-h-[660px]">
           <div className="relative z-10 mx-auto mb-6 flex min-h-[430px] max-w-[460px] items-center justify-center lg:absolute lg:left-1/2 lg:top-1/2 lg:mb-0 lg:w-[420px] lg:-translate-x-1/2 lg:-translate-y-2/3">
-            <div className="absolute h-[96%] w-[96%] rounded-full border border-soft-pink/10 shadow-[0_0_80px_rgba(255,136,204,0.1)_inset]" />
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
-              className="absolute h-[76%] w-[76%] rounded-full border border-dashed border-magic-glow/22"
-            />
-            <motion.div
-              animate={{ scale: [0.66, 1.22], opacity: [0.42, 0] }}
-              transition={{ duration: 2.7, repeat: Infinity, ease: "easeOut" }}
-              className="absolute h-40 w-40 rounded-full border border-soft-pink/40 shadow-[0_0_38px_rgba(255,136,204,0.36)]"
-            />
-            <div className="absolute h-56 w-56 rounded-full bg-magic-glow/22 blur-[100px]" />
+            <div className="absolute h-56 w-56 rounded-full bg-magic-glow/22 blur-[100px] animate-pulse" />
 
             <motion.img
               src="/assets/rose_light.webp"

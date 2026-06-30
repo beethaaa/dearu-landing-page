@@ -4,10 +4,26 @@ import { ExternalLink, Mail, Sparkles } from "lucide-react";
 const Footer = () => {
   return (
     <footer id="send-a-whisper" className="relative w-full overflow-hidden px-4 pb-10 pt-28 sm:px-6 md:pt-36 lg:px-8">
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/40 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-[620px] bg-[linear-gradient(180deg,rgba(9,0,20,0),rgba(36,0,54,0.32)_38%,rgba(9,0,20,0.96))] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto mb-16 max-w-4xl text-center md:mb-20"
+        >
+          <div className="mb-6 flex items-center justify-center gap-4 md:gap-7">
+            <img src="/assets/line.webp" alt="" className="h-auto w-24 rotate-180 opacity-75 drop-shadow-[0_0_12px_rgba(255,0,127,0.45)] md:w-40" />
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-soft-pink/82 md:text-sm">Contact</p>
+            <img src="/assets/line.webp" alt="" className="h-auto w-24 opacity-75 drop-shadow-[0_0_12px_rgba(255,0,127,0.45)] md:w-40" />
+          </div>
+          <h3 className="font-cinzel text-3xl font-bold lowercase leading-tight tracking-[0.13em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.32)] md:text-5xl">
+            Let the next story begin with a signal.
+          </h3>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -15,12 +31,10 @@ const Footer = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative overflow-hidden rounded-[38px] border border-white/12 bg-[#11031b]/66 shadow-[0_34px_120px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
         >
-          <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-white/55 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,136,204,0.22),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.05),transparent_42%,rgba(255,0,127,0.08))]" />
 
           <div className="relative z-10 grid min-h-[560px] items-center gap-10 px-6 py-10 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-14 lg:py-14">
             <div className="relative order-2 min-h-[360px] overflow-hidden rounded-[30px] border border-white/10 bg-deep-night/42 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] lg:order-1">
-              <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-soft-pink/45 to-transparent" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(255,136,204,0.16),transparent_40%)]" />
 
               <motion.img
@@ -57,11 +71,11 @@ const Footer = () => {
             <div className="order-1 text-center lg:order-2 lg:text-left">
               <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-soft-pink/24 bg-white/7 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-soft-pink/86">
                 <Sparkles className="h-4 w-4" />
-                Send A Whisper
+                Drop a message
               </div>
 
               <h2 className="font-cinzel text-3xl font-bold leading-tight tracking-[0.13em] text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.32)] md:text-5xl">
-                Let the next story begin with a signal.
+                begin your dearu story
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-pearl-pink/72 md:text-base lg:mx-0">
                 Follow DearU, send us a note, or keep your place near the first wave of magic.
@@ -89,7 +103,7 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        <div className="relative z-10 mt-9 flex flex-col items-center justify-between gap-6 border-t border-white/8 pt-8 text-center text-xs uppercase tracking-[0.22em] text-white/42 md:flex-row md:text-left">
+        <div className="relative z-10 mt-9 flex flex-col items-center justify-between gap-6 text-center text-xs uppercase tracking-[0.22em] text-white/42 md:flex-row md:text-left">
           <p>© 2026 DearU. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             <a href="#" className="transition-colors duration-300 hover:text-soft-pink">Privacy Policy</a>
