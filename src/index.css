@@ -21,7 +21,7 @@
     padding: 0;
     background-color: var(--color-deep-night);
     color: var(--color-pearl-pink);
-    font-family: var(--font-sans);
+    font-family: var(--font-serif);
     overflow-x: hidden;
   }
 }
