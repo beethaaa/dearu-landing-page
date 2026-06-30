@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-night: #090014;
+  --color-royal-violet: #240036;
+  --color-magic-glow: #ff007f;
+  --color-deep-shadow: #99004d;
+  --color-soft-pink: #ff88cc;
+  --color-pearl-pink: #ffe6f2;
+  
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-fairytale: "Great Vibes", cursive;
+  --font-cinzel: "Cinzel Decorative", serif;
+}
+
+@layer base {
+  body {
+    zoom: 75%; /* Simulates 75% browser zoom */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-deep-night);
+    color: var(--color-pearl-pink);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.7), 0 0 20px rgba(255, 0, 127, 0.5);
+  }
+  .box-glow {
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.5), 0 0 30px rgba(153, 0, 77, 0.4);
+  }
+  .radial-bg {
+    background: radial-gradient(circle at center, var(--color-royal-violet) 0%, var(--color-deep-night) 70%);
+  }
+}
+
+* {
+  cursor: none !important;
+}
