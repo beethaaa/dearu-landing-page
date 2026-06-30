@@ -75,7 +75,7 @@ const Navbar = () => {
 
           <div className="relative z-10 flex items-center justify-end gap-3 sm:min-w-[126px]">
             <a
-              href="https://drive.google.com/drive/folders/1rIvsN3YoDjJwk78GrtEDsg4mY9Z4JI74?usp=sharing"
+              href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
               target="_blank"
               rel="noopener noreferrer"
               className="group/btn hidden items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
@@ -91,12 +91,18 @@ const Navbar = () => {
 
             <button
               type="button"
-              aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-label={
+                menuOpen ? "Close navigation menu" : "Open navigation menu"
+              }
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/8 text-pearl-pink shadow-[0_8px_24px_rgba(0,0,0,0.24)] transition-all duration-300 hover:border-soft-pink/45 hover:bg-white/14 hover:text-white lg:hidden"
             >
-              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {menuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -121,9 +127,9 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://drive.google.com/drive/folders/1rIvsN3YoDjJwk78GrtEDsg4mY9Z4JI74?usp=sharing"
+                href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
                 className="mt-1 flex items-center justify-center rounded-2xl border border-magic-glow/30 bg-magic-glow/12 px-5 py-3 transition-all duration-300 hover:bg-magic-glow/18"
               >

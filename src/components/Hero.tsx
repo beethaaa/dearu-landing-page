@@ -100,7 +100,7 @@ const Hero = () => {
           {/* Download Button Moved Up with 3D Magical Chains */}
           <div className="mt-10 mb-16 relative group inline-flex justify-center items-center perspective-distant scale-110 md:scale-125">
             <motion.a
-              href="https://drive.google.com/drive/folders/1rIvsN3YoDjJwk78GrtEDsg4mY9Z4JI74?usp=sharing"
+              href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
               className="relative flex justify-center items-center"
               style={{ transformStyle: "preserve-3d" }}
               animate={{ y: [0, -10, 0] }}
@@ -160,7 +160,7 @@ const Hero = () => {
 
               {/* Core Button Image */}
               <a
-                href="https://drive.google.com/drive/folders/1rIvsN3YoDjJwk78GrtEDsg4mY9Z4JI74?usp=sharing"
+                href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="translate-y-4"
