@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Heart, Loader2, MessageCircle, RefreshCw, Send } from "lucide-react";
+import { Download, Heart, Loader2, MessageCircle, RefreshCw, Send } from "lucide-react";
 
 type ApiComment =
   | string
@@ -22,6 +22,7 @@ type CommentItem = {
 };
 
 const API_BASE_URL = "https://lovealarm-be-sp9u.onrender.com";
+const ANDROID_RELEASE_API_URL = "https://api.github.com/repos/beethaaa/lovealarm-fe/releases/tags/latest-android";
 
 const readText = (comment: ApiComment) => {
   if (typeof comment === "string") return comment;
@@ -68,10 +69,26 @@ const normalizeComments = (payload: unknown): CommentItem[] => {
   return normalized;
 };
 
+const readDownloadCount = (payload: unknown) => {
+  if (typeof payload !== "object" || payload === null || !("assets" in payload)) return null;
+
+  const assets = (payload as { assets?: unknown }).assets;
+  if (!Array.isArray(assets)) return null;
+
+  return assets.reduce((total, asset) => {
+    if (typeof asset !== "object" || asset === null || !("download_count" in asset)) return total;
+
+    const downloadCount = (asset as { download_count?: unknown }).download_count;
+    return typeof downloadCount === "number" ? total + downloadCount : total;
+  }, 0);
+};
+
 const CommentSection = () => {
   const [comments, setComments] = useState<CommentItem[]>([]);
   const [comment, setComment] = useState("");
+  const [downloadCount, setDownloadCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDownloadCountLoading, setIsDownloadCountLoading] = useState(true);
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState("");
 
@@ -96,6 +113,24 @@ const CommentSection = () => {
 
   useEffect(() => {
     void fetchComments();
+  }, []);
+
+  useEffect(() => {
+    const fetchDownloadCount = async () => {
+      try {
+        const response = await fetch(ANDROID_RELEASE_API_URL);
+        if (!response.ok) throw new Error("Could not load download count");
+
+        const payload: unknown = await response.json();
+        setDownloadCount(readDownloadCount(payload));
+      } catch {
+        setDownloadCount(null);
+      } finally {
+        setIsDownloadCountLoading(false);
+      }
+    };
+
+    void fetchDownloadCount();
   }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -175,10 +210,19 @@ const CommentSection = () => {
             <p className="mt-5 max-w-md text-base leading-8 text-pearl-pink/72">
               Share a thought for DearU, a wish for the app, or a tiny signal from your side of the story.
             </p>
+            <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-soft-pink/20 bg-white/[0.07] px-4 py-2.5 text-pearl-pink shadow-[0_14px_42px_rgba(0,0,0,0.18)] backdrop-blur-md">
+              <Download className="h-4 w-4 text-soft-pink" />
+              <span className="font-cinzel text-2xl font-bold leading-none tracking-widest text-white">
+                {isDownloadCountLoading ? "..." : (downloadCount ?? 0).toLocaleString("en-US")}
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-soft-pink/74">
+                downloads
+              </span>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="relative z-10 mt-10">
-            <div className="rounded-[26px] border border-white/12 bg-white/5.5 p-3 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 focus-within:border-soft-pink/45 focus-within:bg-white/[0.08]">
+            <div className="rounded-[26px] border border-white/12 bg-white/5.5 p-3 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 focus-within:border-soft-pink/45 focus-within:bg-white/8">
               <textarea
                 value={comment}
                 onChange={(event) => setComment(event.target.value.slice(0, 180))}
