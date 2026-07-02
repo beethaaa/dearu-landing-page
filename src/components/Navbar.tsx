@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { getLatestApkUrl } from "../lib/githubReleases";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [apkUrl, setApkUrl] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +15,24 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    getLatestApkUrl(controller.signal)
+      .then((url) => {
+        if (url) setApkUrl(url);
+      })
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+
+        setApkUrl("");
+      });
+
+    return () => controller.abort();
   }, []);
 
   const navLinks = [
@@ -98,10 +118,13 @@ const Navbar = () => {
 
           <div className="relative z-10 flex items-center justify-end gap-3 sm:min-w-[126px]">
             <a
-              href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
+              href={apkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn hidden items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+              aria-disabled={!apkUrl}
+              className={`group/btn hidden items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex ${
+                apkUrl ? "" : "pointer-events-none opacity-60"
+              }`}
             >
               <img
                 src="/assets/DownloadButton.png"
@@ -150,11 +173,14 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
+                href={apkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuOpen(false)}
-                className="mt-1 flex items-center justify-center rounded-2xl border border-magic-glow/30 bg-magic-glow/12 px-5 py-3 transition-all duration-300 hover:bg-magic-glow/18"
+                aria-disabled={!apkUrl}
+                className={`mt-1 flex items-center justify-center rounded-2xl border border-magic-glow/30 bg-magic-glow/12 px-5 py-3 transition-all duration-300 hover:bg-magic-glow/18 ${
+                  apkUrl ? "" : "pointer-events-none opacity-60"
+                }`}
               >
                 <img
                   src="/assets/DownloadButton.png"

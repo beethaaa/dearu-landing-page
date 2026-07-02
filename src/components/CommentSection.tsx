@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Download, Heart, Loader2, MessageCircle, RefreshCw, Send } from "lucide-react";
+import { getTotalApkDownloads } from "../lib/githubReleases";
 
 type ApiComment =
   | string
@@ -22,7 +23,7 @@ type CommentItem = {
 };
 
 const API_BASE_URL = "https://lovealarm-be-sp9u.onrender.com";
-const ANDROID_RELEASE_API_URL = "https://api.github.com/repos/beethaaa/lovealarm-fe/releases/tags/latest-android";
+const DOWNLOAD_COUNT_REFRESH_MS = 5 * 60 * 1000;
 
 const readText = (comment: ApiComment) => {
   if (typeof comment === "string") return comment;
@@ -69,20 +70,6 @@ const normalizeComments = (payload: unknown): CommentItem[] => {
   return normalized;
 };
 
-const readDownloadCount = (payload: unknown) => {
-  if (typeof payload !== "object" || payload === null || !("assets" in payload)) return null;
-
-  const assets = (payload as { assets?: unknown }).assets;
-  if (!Array.isArray(assets)) return null;
-
-  return assets.reduce((total, asset) => {
-    if (typeof asset !== "object" || asset === null || !("download_count" in asset)) return total;
-
-    const downloadCount = (asset as { download_count?: unknown }).download_count;
-    return typeof downloadCount === "number" ? total + downloadCount : total;
-  }, 0);
-};
-
 const CommentSection = () => {
   const [comments, setComments] = useState<CommentItem[]>([]);
   const [comment, setComment] = useState("");
@@ -116,21 +103,37 @@ const CommentSection = () => {
   }, []);
 
   useEffect(() => {
-    const fetchDownloadCount = async () => {
-      try {
-        const response = await fetch(ANDROID_RELEASE_API_URL);
-        if (!response.ok) throw new Error("Could not load download count");
+    let controller = new AbortController();
 
-        const payload: unknown = await response.json();
-        setDownloadCount(readDownloadCount(payload));
-      } catch {
+    const fetchDownloadCount = async (showLoading = false) => {
+      if (showLoading) setIsDownloadCountLoading(true);
+
+      try {
+        const data = await getTotalApkDownloads(controller.signal);
+        setDownloadCount(data.totalDownloads);
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+
         setDownloadCount(null);
       } finally {
         setIsDownloadCountLoading(false);
       }
     };
 
-    void fetchDownloadCount();
+    void fetchDownloadCount(true);
+
+    const intervalId = window.setInterval(() => {
+      controller.abort();
+      controller = new AbortController();
+      void fetchDownloadCount();
+    }, DOWNLOAD_COUNT_REFRESH_MS);
+
+    return () => {
+      controller.abort();
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
