@@ -1,9 +1,29 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MagicalChain } from "./MagicalChain";
+import { getLatestApkUrl } from "../lib/githubReleases";
 
 const Hero = () => {
   const ref = useRef(null);
+  const [apkUrl, setApkUrl] = useState<string>("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    getLatestApkUrl(controller.signal)
+      .then((url) => {
+        if (url) setApkUrl(url);
+      })
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+
+        setApkUrl("");
+      });
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <section
@@ -84,7 +104,7 @@ const Hero = () => {
           {/* Download Button Moved Up with 3D Magical Chains */}
           <div className="mt-10 mb-16 relative group inline-flex justify-center items-center perspective-distant scale-110 md:scale-125">
             <motion.a
-              href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
+              href={apkUrl}
               className="relative flex justify-center items-center"
               style={{ transformStyle: "preserve-3d" }}
               animate={{ y: [0, -10, 0] }}
@@ -144,7 +164,7 @@ const Hero = () => {
 
               {/* Core Button Image */}
               <a
-                href="https://github.com/beethaaa/lovealarm-fe/releases/download/latest-android/dearu-android-latest.apk"
+                href={apkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="translate-y-4"
